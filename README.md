@@ -2,6 +2,9 @@
 
 A Python package for image simulations of semi-resolved dwarf galaxies for Roman
 
+<!-- insert demo.png  -->
+![Concept of Rosesim](demo.png)
+
 ## Installation
 
 You can install locally with:
