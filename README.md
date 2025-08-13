@@ -24,7 +24,7 @@ You need to set `ROSESIM_DATA_PATH` in your environment variables, e.g., add `RO
 
 Or run as a script:
 ```bash
-rosesim_sky --obs_ra=150.1049 --obs_dec=2.2741 --s=5001 --prefix='sky_jaguar' --exptime=642 --filters=['F106', 'F129', 'F158'] --seed=42 --include_bkg=True --include_gaia=True
+rosesim_sky --obs_ra=150.1049 --obs_dec=2.2741 --size=5001 --prefix='sky_jaguar' --exptime=642 --filters=['F106', 'F129', 'F158'] --seed=42 --include_bkg=True --include_gaia=True
 
 rosesim_gal --obs_ra=150.1049 --obs_dec=2.2741 --distance=5 --age=1.0 --log_m_star=4 --exptime=642
 ```

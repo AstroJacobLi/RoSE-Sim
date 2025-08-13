@@ -11,7 +11,7 @@ setup(
         'matplotlib',
         'astropy',
         'astroquery',
-        'romanisim',
+        'romanisim @ git+ssh://git@github.com/AstroJacobLi/romanisim.git',
         'artpop',
         'asdf',
         'roman_datamodels',

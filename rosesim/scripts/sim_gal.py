@@ -20,7 +20,43 @@ def simulate_galaxy(obs_ra=150.1049, obs_dec=2.2741, log_m_star=6, distance=30,
                age=5, feh=-1.5, abs_mag_lim=-1, filters=['F129', 'F158', 'F106'], exptime=642, 
                n=0.8, theta=100, ellip=0.3,
                sky_model="/scratch/gpfs/JENNYG/jiaxuanl/Data/SBF/Rosesim/sky_jaguar/"):
+    """
+    Simulate a mock galaxy and inject it into a background image.
 
+    Parameters
+    ----------
+    obs_ra : float
+        The right ascension of the observation point.
+    obs_dec : float
+        The declination of the observation point.
+    log_m_star : float
+        The logarithm of the stellar mass of the galaxy.
+    distance : float
+        The distance to the galaxy.
+    age : float
+        The log age [yr] of the galaxy, e.g., 9 means 1 Gyr.
+    feh : float
+        The [Fe/H] metallicity of the galaxy.
+    abs_mag_lim : float
+        The absolute magnitude limit for sampling the stars.
+    filters : list
+        The list of filters to use for the simulation.
+    exptime : float
+        The exposure time for the simulation.
+    n : float
+        The Sersic index.
+    theta : float
+        The position angle, in degree.
+    ellip : float
+        The ellipticity, defined as 1 - b/a.
+    sky_model : str
+        The path to the sky model.
+    """
+    # some checks
+    available_filters = ['F106', 'F129', 'F158']
+    if not all(f in available_filters for f in filters):
+        raise ValueError(f"Some filters are not available: {filters}")
+    
     print('Exposure time', exptime, 's')
     if feh == None:
         feh = rosesim.mass_feh_kirby(log_m_star)
