@@ -1,0 +1,457 @@
+{
+    "dw_1e7.0_35Mpc_1.0Gyr_F158": {
+        "ra": 150.1049,
+        "dec": 2.2741,
+        "distance": 35,
+        "name": "dw_1e7.0_35Mpc_1.0Gyr_F158",
+        "followup": "Roman",
+        "zp": 25.265227862373404,
+        "pixel_scale": 0.11,
+        "sbf_filt": "F158",
+        "coadd_dir": "/scratch/gpfs/JENNYG/jiaxuanl/Data/SBF/Rosesim/dw_1e7.0_35Mpc_1.0Gyr/F158_642s_cutout.fits",
+        "bkg_dir": "/scratch/gpfs/JENNYG/jiaxuanl/Data/SBF/Rosesim/dw_1e7.0_35Mpc_1.0Gyr/F158_642s_cutout.fits",
+        "cutout_dir": "/scratch/gpfs/JENNYG/jiaxuanl/Data/SBF/Rosesim/dw_1e7.0_35Mpc_1.0Gyr/SBF_cutout/",
+        "cutsize": 100,
+        "background": {
+            "ra": 150.0897756,
+            "dec": 2.276571,
+            "cutsize": 80
+        },
+        "psf": {
+            "ra": 0,
+            "dec": 0
+        },
+        "host_dist": 35,
+        "cirrus": false,
+        "sersic_mask_kwargs": {
+            "cutsize": 350,
+            "delta_pos": 5,
+            "thresh": 3,
+            "grow_sig": 2,
+            "grow_obj": 2,
+            "obj_rmin": 10,
+            "seg_rmin": 10,
+            "backsize": 15,
+            "sub_local_bkg": false
+        },
+        "sersic_init_params": {
+            "PA": [
+                10,
+                0,
+                180
+            ],
+            "ell": [
+                0.3,
+                0,
+                0.9
+            ],
+            "n": [
+                0.8,
+                0.3,
+                2
+            ]
+        },
+        "use_nonpar_model": false,
+        "non_par_params": {
+            "shape": "square",
+            "n_seeing": 6
+        },
+        "corr_noise": false,
+        "sbf_mask_kwargs": {
+            "seg_rmin": 0,
+            "obj_rmin": 0,
+            "grow_sig": 1.0,
+            "grow_obj": 1.0,
+            "phys_thresh": true,
+            "M_abs": -6,
+            "backsize": 20,
+            "backffrac": 0.3
+        },
+        "sbf_meas_kwargs": {
+            "k1": [
+                0.05,
+                0.1
+            ],
+            "k2": [
+                0.45,
+                0.5
+            ],
+            "gal_outer": [
+                0.15,
+                0.25
+            ],
+            "gal_inner": [
+                2,
+                2
+            ],
+            "n_trials": 50,
+            "n_bkgs": 3,
+            "cut_n_reff": 6,
+            "num_radial_bins": 40
+        }
+    },
+    "dw_1e7.0_50Mpc_0.4Gyr_F158": {
+        "ra": 150.1049,
+        "dec": 2.2741,
+        "distance": 50,
+        "name": "dw_1e7.0_50Mpc_0.4Gyr_F158",
+        "followup": "Roman",
+        "zp": 25.265227862373404,
+        "pixel_scale": 0.11,
+        "sbf_filt": "F158",
+        "coadd_dir": "/scratch/gpfs/JENNYG/jiaxuanl/Data/SBF/Rosesim/dw_1e7.0_50Mpc_0.4Gyr/F158_642s_cutout.fits",
+        "bkg_dir": "/scratch/gpfs/JENNYG/jiaxuanl/Data/SBF/Rosesim/dw_1e7.0_50Mpc_0.4Gyr/F158_642s_cutout.fits",
+        "cutout_dir": "/scratch/gpfs/JENNYG/jiaxuanl/Data/SBF/Rosesim/dw_1e7.0_50Mpc_0.4Gyr/SBF_cutout",
+        "cutsize": 100,
+        "background": {
+            "ra": 150.0897756,
+            "dec": 2.276571,
+            "cutsize": 80
+        },
+        "psf": {
+            "ra": 0,
+            "dec": 0
+        },
+        "host_dist": 50,
+        "cirrus": false,
+        "sersic_mask_kwargs": {
+            "cutsize": 350,
+            "delta_pos": 5,
+            "thresh": 2,
+            "grow_sig": 2,
+            "grow_obj": 2,
+            "obj_rmin": 10,
+            "seg_rmin": 10,
+            "backsize": 15,
+            "sub_local_bkg": false
+        },
+        "sersic_init_params": {
+            "PA": [
+                10,
+                0,
+                180
+            ],
+            "ell": [
+                0.3,
+                0,
+                0.9
+            ],
+            "n": [
+                0.8,
+                0.3,
+                2
+            ]
+        },
+        "use_nonpar_model": false,
+        "non_par_params": {
+            "shape": "square",
+            "n_seeing": 6
+        },
+        "corr_noise": false,
+        "sbf_mask_kwargs": {
+            "seg_rmin": 0,
+            "obj_rmin": 0,
+            "grow_sig": 1.0,
+            "grow_obj": 1.0,
+            "phys_thresh": true,
+            "M_abs": -6.8,
+            "backsize": 15,
+            "backffrac": 0.3
+        },
+        "sbf_meas_kwargs": {
+            "k1": [
+                0.07,
+                0.12
+            ],
+            "k2": [
+                0.45,
+                0.5
+            ],
+            "gal_outer": [
+                0.2,
+                0.25
+            ],
+            "gal_inner": [
+                2,
+                2
+            ],
+            "n_trials": 50,
+            "n_bkgs": 5,
+            "cut_n_reff": 8,
+            "num_radial_bins": 25
+        }
+    },
+    "dw_1e7.0_50Mpc_0.4Gyr_F129": {
+        "ra": 150.1049,
+        "dec": 2.2741,
+        "distance": 50,
+        "name": "dw_1e7.0_50Mpc_0.4Gyr_F129",
+        "followup": "Roman",
+        "zp": 25.265227862373404,
+        "pixel_scale": 0.11,
+        "sbf_filt": "F129",
+        "coadd_dir": "/scratch/gpfs/JENNYG/jiaxuanl/Data/SBF/Rosesim/dw_1e7.0_50Mpc_0.4Gyr/F129_642s_cutout.fits",
+        "bkg_dir": "/scratch/gpfs/JENNYG/jiaxuanl/Data/SBF/Rosesim/dw_1e7.0_50Mpc_0.4Gyr/F129_642s_cutout.fits",
+        "cutout_dir": "/scratch/gpfs/JENNYG/jiaxuanl/Data/SBF/Rosesim/dw_1e7.0_50Mpc_0.4Gyr/SBF_cutout",
+        "cutsize": 100,
+        "background": {
+            "ra": 150.0897756,
+            "dec": 2.276571,
+            "cutsize": 80
+        },
+        "psf": {
+            "ra": 0,
+            "dec": 0
+        },
+        "host_dist": 50,
+        "cirrus": false,
+        "sersic_mask_kwargs": {
+            "cutsize": 350,
+            "delta_pos": 5,
+            "thresh": 2,
+            "grow_sig": 2,
+            "grow_obj": 2,
+            "obj_rmin": 10,
+            "seg_rmin": 10,
+            "backsize": 15,
+            "sub_local_bkg": false
+        },
+        "sersic_init_params": {
+            "PA": [
+                10,
+                0,
+                180
+            ],
+            "ell": [
+                0.3,
+                0,
+                0.9
+            ],
+            "n": [
+                0.8,
+                0.3,
+                2
+            ]
+        },
+        "use_nonpar_model": false,
+        "non_par_params": {
+            "shape": "square",
+            "n_seeing": 6
+        },
+        "corr_noise": false,
+        "sbf_mask_kwargs": {
+            "seg_rmin": 0,
+            "obj_rmin": 0,
+            "grow_sig": 1.0,
+            "grow_obj": 1.0,
+            "phys_thresh": true,
+            "M_abs": -6.5,
+            "backsize": 15,
+            "backffrac": 0.3
+        },
+        "sbf_meas_kwargs": {
+            "k1": [
+                0.07,
+                0.12
+            ],
+            "k2": [
+                0.45,
+                0.5
+            ],
+            "gal_outer": [
+                0.2,
+                0.25
+            ],
+            "gal_inner": [
+                2,
+                2
+            ],
+            "n_trials": 50,
+            "n_bkgs": 5,
+            "cut_n_reff": 10,
+            "num_radial_bins": 25
+        }
+    },
+    "dw_1e7.0_35Mpc_0.4Gyr_F129": {
+        "ra": 150.1049,
+        "dec": 2.2741,
+        "distance": 35,
+        "name": "dw_1e7.0_35Mpc_0.4Gyr_F129",
+        "followup": "Roman",
+        "zp": 25.265227862373404,
+        "pixel_scale": 0.11,
+        "sbf_filt": "F129",
+        "coadd_dir": "/scratch/gpfs/JENNYG/jiaxuanl/Data/SBF/Rosesim/dw_1e7.0_35Mpc_0.4Gyr/F129_642s_cutout.fits",
+        "bkg_dir": "/scratch/gpfs/JENNYG/jiaxuanl/Data/SBF/Rosesim/dw_1e7.0_35Mpc_0.4Gyr/F129_642s_cutout.fits",
+        "cutout_dir": "/scratch/gpfs/JENNYG/jiaxuanl/Data/SBF/Rosesim/dw_1e7.0_35Mpc_0.4Gyr/SBF_cutout",
+        "cutsize": 100,
+        "background": {
+            "ra": 150.0897756,
+            "dec": 2.276571,
+            "cutsize": 80
+        },
+        "psf": {
+            "ra": 0,
+            "dec": 0
+        },
+        "host_dist": 50,
+        "cirrus": false,
+        "sersic_mask_kwargs": {
+            "cutsize": 350,
+            "delta_pos": 5,
+            "thresh": 2,
+            "grow_sig": 2,
+            "grow_obj": 2,
+            "obj_rmin": 10,
+            "seg_rmin": 10,
+            "backsize": 15,
+            "sub_local_bkg": false
+        },
+        "sersic_init_params": {
+            "PA": [
+                10,
+                0,
+                180
+            ],
+            "ell": [
+                0.3,
+                0,
+                0.9
+            ],
+            "n": [
+                0.8,
+                0.3,
+                2
+            ]
+        },
+        "use_nonpar_model": false,
+        "non_par_params": {
+            "shape": "square",
+            "n_seeing": 6
+        },
+        "corr_noise": false,
+        "sbf_mask_kwargs": {
+            "seg_rmin": 0,
+            "obj_rmin": 0,
+            "grow_sig": 1.0,
+            "grow_obj": 1.0,
+            "phys_thresh": true,
+            "M_abs": -6.5,
+            "backsize": 15,
+            "backffrac": 0.3
+        },
+        "sbf_meas_kwargs": {
+            "k1": [
+                0.07,
+                0.12
+            ],
+            "k2": [
+                0.45,
+                0.5
+            ],
+            "gal_outer": [
+                0.2,
+                0.25
+            ],
+            "gal_inner": [
+                2,
+                2
+            ],
+            "n_trials": 50,
+            "n_bkgs": 5,
+            "cut_n_reff": 10,
+            "num_radial_bins": 25
+        }
+    },
+    "dw_1e7.0_35Mpc_0.4Gyr_F158": {
+        "ra": 150.1049,
+        "dec": 2.2741,
+        "distance": 35,
+        "name": "dw_1e7.0_35Mpc_0.4Gyr_F158",
+        "followup": "Roman",
+        "zp": 25.265227862373404,
+        "pixel_scale": 0.11,
+        "sbf_filt": "F158",
+        "coadd_dir": "/scratch/gpfs/JENNYG/jiaxuanl/Data/SBF/Rosesim/dw_1e7.0_35Mpc_0.4Gyr/F158_642s_cutout.fits",
+        "bkg_dir": "/scratch/gpfs/JENNYG/jiaxuanl/Data/SBF/Rosesim/dw_1e7.0_35Mpc_0.4Gyr/F158_642s_cutout.fits",
+        "cutout_dir": "/scratch/gpfs/JENNYG/jiaxuanl/Data/SBF/Rosesim/dw_1e7.0_35Mpc_0.4Gyr/SBF_cutout",
+        "cutsize": 100,
+        "background": {
+            "ra": 150.0897756,
+            "dec": 2.276571,
+            "cutsize": 80
+        },
+        "psf": {
+            "ra": 0,
+            "dec": 0
+        },
+        "host_dist": 35,
+        "cirrus": false,
+        "sersic_mask_kwargs": {
+            "cutsize": 350,
+            "delta_pos": 5,
+            "thresh": 2,
+            "grow_sig": 2,
+            "grow_obj": 2,
+            "obj_rmin": 10,
+            "seg_rmin": 10,
+            "backsize": 15,
+            "sub_local_bkg": false
+        },
+        "sersic_init_params": {
+            "PA": [
+                10,
+                0,
+                180
+            ],
+            "ell": [
+                0.3,
+                0,
+                0.9
+            ],
+            "n": [
+                0.8,
+                0.3,
+                2
+            ]
+        },
+        "use_nonpar_model": false,
+        "non_par_params": {
+            "shape": "square",
+            "n_seeing": 6
+        },
+        "corr_noise": false,
+        "sbf_mask_kwargs": {
+            "seg_rmin": 0,
+            "obj_rmin": 0,
+            "grow_sig": 1.0,
+            "grow_obj": 1.0,
+            "phys_thresh": true,
+            "M_abs": -6.25,
+            "backsize": 15,
+            "backffrac": 0.3
+        },
+        "sbf_meas_kwargs": {
+            "k1": [
+                0.07,
+                0.12
+            ],
+            "k2": [
+                0.45,
+                0.5
+            ],
+            "gal_outer": [
+                0.2,
+                0.25
+            ],
+            "gal_inner": [
+                2,
+                2
+            ],
+            "n_trials": 50,
+            "n_bkgs": 5,
+            "cut_n_reff": 3,
+            "num_radial_bins": 25
+        }
+    }
+}

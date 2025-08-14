@@ -124,3 +124,5 @@ def main():
 # python sim_gal.py --obs_ra=150.1049 --obs_dec=2.2741 --distance=5 --age=1.0 --log_m_star=4 --exptime=642
 
 # rosesim_gal --obs_ra=150.1049 --obs_dec=2.2741 --distance=5 --age=1.0 --log_m_star=4 --exptime=642
+
+# rosesim_gal --obs_ra=150.1049 --obs_dec=2.2741 --distance=1 --age=6.0 --log_m_star=4 --exptime=642 --abs_mag_lim=0

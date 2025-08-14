@@ -75,8 +75,8 @@ class RomanGalaxy(object):
     def observe(self, exptimes=642, rng_seed=0):
         _, psf = inject_sources_into_l3(self.dm, self.obj_cat, stpsf=True, 
                                exptimes=exptimes, seed=rng_seed)
-        self.psf = psf
-        
+        self.dm.psf = psf.image.array
+
     def write_fits(self, output_filename, subtract_bkg=True):
         asdf_to_fits(self.dm, output_filename, subtract_bkg=subtract_bkg)
         print(f'Wrote FITS file to {output_filename}')

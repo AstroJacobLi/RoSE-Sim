@@ -11,10 +11,10 @@ setup(
         'matplotlib',
         'astropy',
         'astroquery',
-        'romanisim @ git+ssh://git@github.com/AstroJacobLi/romanisim.git',
         'artpop',
         'asdf',
         'roman_datamodels',
+        'romanisim @ git+ssh://git@github.com/AstroJacobLi/romanisim.git',
     ],
     entry_points={
         'console_scripts': [
