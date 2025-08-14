@@ -126,18 +126,74 @@ class RomanSky(object):
         # gaia_cat['dec'] += self.dec - 2.1781633
         # Filter the Gaia results for stars and exclude bright stars
         gaia_cat = gaia_cat[-2.5 * np.log10(gaia_cat['F158']) > 17]
-        self.gaia_cat = gaia_cat
-
-    def gen_catalog(self, include_gaia=True, include_bkg=True):
-        self.roman_wcs = make_wcs(self.ra, self.dec, self.pa, self.xy_dim)
+        self.star_cat = gaia_cat
         
-        if include_gaia:
-            gaia_catalog = self.gaia_cat
+    def load_trilegal_star(self, radius=0.2, 
+                           path='/scratch/gpfs/JENNYG/jiaxuanl/Data/SBF/Rosesim/TRILEGAL/trilegal.dat', 
+                           area=1, seed=42):
+        """
+        Load MW stars from TRILEGAL (https://stev.oapd.inaf.it/~webmaster/trilegal_1.6/help.html).
+        
+        Parameters
+        ----------
+        radius: float
+            The radius around the center (ra, dec) to search for stars (in degrees).
+        path: str
+            The path to the TRILEGAL catalog file.
+        area: float
+            The area to consider for star density (in square degrees).
+        seed: int
+            Random seed for reproducibility.
+        """
+        optical_element = 'F062 F087 F106 F129 F146 F158 F184'.split()
+        trilegal_cat = Table.read(path, format='ascii')
+        trilegal_cat = trilegal_cat[optical_element]
+        trilegal_cat['ID'] = np.arange(len(trilegal_cat))
+        density = len(trilegal_cat) / area # number of sources per square degree
+        
+        trilegal_cat = trilegal_cat[trilegal_cat['F158'] > 17]
+        for filt in optical_element:
+            trilegal_cat[filt] = 10**(-0.4 * trilegal_cat[filt])
+
+        # Calculate total sources
+        sim_count = density * np.pi * (radius * u.deg)**2
+
+        # Obtain random sources from the catalog
+        rng_numpy = np.random.default_rng(seed)
+        sim_count = rng_numpy.poisson(sim_count.value)
+        sim_ids = rng_numpy.integers(size=sim_count, low=0, high=len(trilegal_cat)).tolist()
+        sim_cat = trilegal_cat[sim_ids]
+        
+        # Randomize positions of the sources
+        coord = SkyCoord(self.ra, self.dec, unit='deg')
+        from romanisim import util
+        import galsim
+        locs = util.random_points_in_cap(coord, radius, len(sim_ids), rng=galsim.UniformDeviate(seed))
+
+        out = Table()
+        out['ra'] = locs.ra.to(u.deg).value
+        out['dec'] = locs.dec.to(u.deg).value
+        out['type'] = 'PSF'
+        
+        out['n'] = 0
+        out['half_light_radius'] = 0
+        out['pa'] = 0
+        out['ba'] = 0
+        for filt in optical_element:
+            out[filt] = sim_cat[filt]
+
+        self.star_cat = out
+
+    def gen_catalog(self, include_star=True, include_bkg=True):
+        self.roman_wcs = make_wcs(self.ra, self.dec, self.pa, self.xy_dim)
+
+        if include_star:
+            star_catalog = self.star_cat
             ra_dec = self.roman_wcs.all_pix2world([0, self.xy_dim[0]], [self.xy_dim[0], 0], 1)
-            gaia_catalog = gaia_catalog[(gaia_catalog['ra'] > ra_dec[0][0]) & (gaia_catalog['ra'] < ra_dec[0][1]) & (gaia_catalog['dec'] > ra_dec[1][1]) & (gaia_catalog['dec'] < ra_dec[1][0])]
-            print(len(gaia_catalog), 'Gaia stars loaded.')
-            self.gaia_cat = gaia_catalog
-            
+            star_catalog = star_catalog[(star_catalog['ra'] > ra_dec[0][0]) & (star_catalog['ra'] < ra_dec[0][1]) & (star_catalog['dec'] > ra_dec[1][1]) & (star_catalog['dec'] < ra_dec[1][0])]
+            print(len(star_catalog), 'star sources loaded.')
+            self.star_cat = star_catalog
+
         if include_bkg:
             bkg_table = self.bkg_cat
             ra_dec = self.roman_wcs.all_pix2world([0, self.xy_dim[0]], [self.xy_dim[0], 0], 1)
@@ -150,18 +206,20 @@ class RomanSky(object):
             full_table = self.bkg_cat
         else:
             full_table = None
-            
-        if include_gaia and len(self.gaia_cat) != 0:
-            full_table = vstack([full_table, self.gaia_cat], join_type='inner')
+
+        if include_star and len(self.star_cat) != 0:
+            full_table = vstack([full_table, self.star_cat], join_type='inner')
         else:
             pass
 
         if full_table is None:
             raise ValueError("No sources to include in the catalog. Please include either Gaia stars or background galaxies.")
         full_table.write(f'./temp/sky_table.ecsv', format='ascii.ecsv', overwrite=True)
+        self.obj_cat = full_table
         
-    def observe(self, band='F158', exptime=642, nexp=6, rng_seed=0):
-        cmd = f"/home/jiaxuanl/Research/Packages/romanisim/scripts/romanisim-make-l3 --bandpass {band} --radec {self.ra} {self.dec} --npix {self.xy_dim[0]} --pixscalefrac 1.0 --exptime {exptime} --rng_seed {rng_seed} --nexposures {nexp} --date {self.obs_time.isot} /scratch/gpfs/JENNYG/jiaxuanl/Data/SBF/Rosesim/{self.prefix}/{band}_{exptime}s.asdf /scratch/gpfs/JENNYG/jiaxuanl/Data/SBF/Rosesim/{self.prefix}/temp/sky_table.ecsv"
+
+    def observe(self, band='F158', exptime=642, nexp=6, rng_seed=0, psf_fov_arcsec=5):
+        cmd = f"/home/jiaxuanl/Research/Packages/romanisim/scripts/romanisim-make-l3 --bandpass {band} --radec {self.ra} {self.dec} --npix {self.xy_dim[0]} --pixscalefrac 1.0 --exptime {exptime} --rng_seed {rng_seed} --nexposures {nexp} --date {self.obs_time.isot} --psf_fov_arcsec {psf_fov_arcsec} /scratch/gpfs/JENNYG/jiaxuanl/Data/SBF/Rosesim/{self.prefix}/{band}_{exptime}s.asdf /scratch/gpfs/JENNYG/jiaxuanl/Data/SBF/Rosesim/{self.prefix}/temp/sky_table.ecsv"
 
         print(f'Making mock Roman L3 image in {band} for {self.prefix}')
         os.system(cmd)
